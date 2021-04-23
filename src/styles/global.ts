@@ -19,7 +19,7 @@ export default createGlobalStyle`
 
   body, input, button {
     font: 400 1.6rem 'Poppins', sans-serif;
-    color: #FFFFFF;
+    color: #1e1e2c;
   }
 
   button {
