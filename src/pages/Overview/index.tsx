@@ -1,13 +1,15 @@
-import { LogOut, Search } from '@styled-icons/ionicons-outline';
 import React from 'react';
+
+import Header from '../../components/Header';
 import LineChart from '../../components/LineChart';
 
-import Sidebar from '../../components/Sidebar';
+import Dashboard from '../../layouts/Dashboard';
+
 import { optionsLineChart } from './chartOptions';
 
-import { Container, Content, Summary, ContainerGraphic } from './styles';
+import { Container, Summary, ContainerGraphic } from './styles';
 
-const Dashboard: React.FC = () => {
+const Overview: React.FC = () => {
   const dataLineChart: Chart.ChartData = {
     labels: [
       '20/04',
@@ -36,25 +38,9 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Sidebar />
-      <Content>
-        <header>
-          <div>
-            <h1>Visão Geral</h1>
-            <h2>Bem vindo, Samuel Ramos!</h2>
-          </div>
-
-          <div>
-            <button type="button">
-              <Search />
-            </button>
-
-            <button type="button">
-              <LogOut />
-            </button>
-          </div>
-        </header>
+    <Dashboard>
+      <Container>
+        <Header title="Visão Geral" subtitle="Bem vindo, Samuel Ramos!" />
 
         <Summary>
           <div className="income">
@@ -80,9 +66,9 @@ const Dashboard: React.FC = () => {
             <LineChart data={dataLineChart} options={optionsLineChart} />
           </main>
         </ContainerGraphic>
-      </Content>
-    </Container>
+      </Container>
+    </Dashboard>
   );
 };
 
-export default Dashboard;
+export default Overview;

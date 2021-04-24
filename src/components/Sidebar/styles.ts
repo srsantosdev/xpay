@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.aside`
   position: relative;
@@ -27,15 +28,17 @@ export const MenuContainer = styled.nav`
   flex: 1;
 `;
 
-export const MenuButton = styled.button`
+export const MenuButton = styled(NavLink).attrs({
+  activeClassname: 'active',
+})`
   width: 100%;
   display: flex;
   align-items: center;
   gap: 1.6rem;
 
-  border: 0;
   border-radius: 1rem;
   background: none;
+  text-decoration: none;
   color: #1e1e2c;
 
   padding: 1.2rem 1.6rem;
@@ -59,7 +62,7 @@ export const MenuButton = styled.button`
     color: #25b3cb;
   }
 
-  & + button {
+  & + a {
     margin-top: 0.4rem;
   }
 `;

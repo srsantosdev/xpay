@@ -1,5 +1,6 @@
-import { Card, Grid } from '@styled-icons/ionicons-outline';
 import React from 'react';
+
+import { Card, Grid } from '@styled-icons/ionicons-outline';
 
 import xpaylogo from '../../assets/logo.svg';
 
@@ -19,11 +20,11 @@ const Sidebar: React.FC = () => {
       </ContainerLogo>
 
       <MenuContainer>
-        <MenuButton className="active">
+        <MenuButton to="/overview">
           <Grid />
           <span>Visão Geral</span>
         </MenuButton>
-        <MenuButton>
+        <MenuButton to="/transactions">
           <Card />
           <span>Transações</span>
         </MenuButton>
