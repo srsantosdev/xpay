@@ -1,5 +1,8 @@
 import { Add, LogOut } from '@styled-icons/ionicons-outline';
 import React, { useCallback, useState } from 'react';
+
+import { useAuth } from '../../hooks/useAuth';
+
 import NewTransactionModal from '../NewTransactionModal';
 
 import { Container } from './styles';
@@ -10,6 +13,8 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
+  const { signOut } = useAuth();
+
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(
     false,
   );
@@ -45,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
             <span>Adicionar transação</span>
           </button>
 
-          <button type="button">
+          <button type="button" onClick={signOut}>
             <LogOut />
           </button>
         </div>

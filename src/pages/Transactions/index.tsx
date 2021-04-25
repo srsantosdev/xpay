@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
+import Dashboard from '../../layouts/Dashboard';
 import Header from '../../components/Header';
 import Transaction from '../../components/Transaction';
-import Dashboard from '../../layouts/Dashboard';
+
+import { Transaction as TransactionType } from '../../providers/TransactionsProvider';
 
 import { Container, Content } from './styles';
+import { api } from '../../services/api';
+import { useAuth } from '../../hooks/useAuth';
+
+interface TransactionDetail {
+  date: Date;
+  transactions: TransactionType[];
+}
 
 const Transactions: React.FC = () => {
+  const { user } = useAuth();
+
+  const [transactionsDetails, setTransactionsDetails] = useState<
+    TransactionDetail[]
+  >([]);
+
+  useEffect(() => {
+    async function loadData() {
+      const response = await api.get('/transactions/details', {
+        params: { user_id: user.id },
+      });
+
+      setTransactionsDetails(response.data);
+    }
+
+    loadData();
+  }, [user]);
+
   return (
     <Dashboard>
       <Container>
@@ -16,37 +44,13 @@ const Transactions: React.FC = () => {
         />
 
         <Content>
-          <Transaction
-            date={new Date()}
-            transactions={[
-              {
-                id: '1',
-                amount: 300,
-                category: 'Freelancer',
-                description: 'Desenvolvimento de site',
-                type: 'income',
-              },
-              {
-                id: '2',
-                amount: 200,
-                category: 'Compras',
-                description: 'Supermercado',
-                type: 'outcome',
-              },
-            ]}
-          />
-          <Transaction
-            date={new Date(2021, 3, 23)}
-            transactions={[
-              {
-                id: '5',
-                amount: 500,
-                category: 'Compras',
-                description: 'Supermercado',
-                type: 'outcome',
-              },
-            ]}
-          />
+          {transactionsDetails.map(transactionDetail => (
+            <Transaction
+              key={uuid()}
+              date={transactionDetail.date}
+              transactions={transactionDetail.transactions}
+            />
+          ))}
         </Content>
       </Container>
     </Dashboard>

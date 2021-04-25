@@ -23,10 +23,10 @@ interface TransactionProps {
 
 const Transaction: React.FC<TransactionProps> = ({ date, transactions }) => {
   const formattedDate = useMemo(() => {
-    const formatWeekday = format(date, 'EEEE', {
+    const formatWeekday = format(new Date(date), 'EEEE', {
       locale: ptbr,
     });
-    const formatDate = format(date, "dd 'de' MMMM 'de' yyyy", {
+    const formatDate = format(new Date(date), "dd 'de' MMMM 'de' yyyy", {
       locale: ptbr,
     });
 

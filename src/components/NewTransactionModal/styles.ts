@@ -1,6 +1,8 @@
 import styled, { css } from 'styled-components';
 import { darken, transparentize } from 'polished';
 
+import { Form } from '@unform/web';
+
 interface RadioBoxProps {
   radioType: 'income' | 'outcome';
   isActive?: boolean;
@@ -11,7 +13,7 @@ const colors = {
   outcome: '#e52e4d',
 };
 
-export const Container = styled.form`
+export const Container = styled(Form)`
   h2 {
     color: #1e1e2c;
     font-size: 2rem;

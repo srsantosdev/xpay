@@ -28,9 +28,7 @@ export const MenuContainer = styled.nav`
   flex: 1;
 `;
 
-export const MenuButton = styled(NavLink).attrs({
-  activeClassname: 'active',
-})`
+export const MenuButton = styled(NavLink)`
   width: 100%;
   display: flex;
   align-items: center;

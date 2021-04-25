@@ -9,7 +9,7 @@ export const optionsLineChart: Chart.ChartOptions = {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 100,
+          stepSize: 500,
         },
       },
     ],
